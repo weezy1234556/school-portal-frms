@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission - Firmly Rooted Montessori School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8f9fa;
+            --accent-color: #28a745;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 76px;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .btn-custom {
+            background: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .requirements-card {
+            background: #f8f9fa;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-graduation-cap me-2"></i>Firmly Rooted Montessori</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showLogin()">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold"><i class="fas fa-user-plus me-3"></i>School Admission</h1>
+                    <p class="lead">Join our Montessori family and give your child the best start</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="form-container">
+                    <h3 class="mb-4">Admission Application Form</h3>
+                    <form id="admissionForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="childName" class="form-label">Child's Full Name *</label>
+                                <input type="text" class="form-control" id="childName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="dateOfBirth" class="form-label">Date of Birth *</label>
+                                <input type="date" class="form-control" id="dateOfBirth" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="gender" class="form-label">Gender *</label>
+                                <select class="form-control" id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="gradeLevel" class="form-label">Grade Level *</label>
+                                <select class="form-control" id="gradeLevel" required>
+                                    <option value="">Select Grade</option>
+                                    <option value="Pre-K">Pre-K (Ages 3-4)</option>
+                                    <option value="Kindergarten">Kindergarten (Ages 4-5)</option>
+                                    <option value="Grade 1">Grade 1 (Ages 5-6)</option>
+                                    <option value="Grade 2">Grade 2 (Ages 6-7)</option>
+                                    <option value="Grade 3">Grade 3 (Ages 7-8)</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h5 class="mt-4 mb-3">Parent/Guardian Information</h5>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="parentName" class="form-label">Parent/Guardian Name *</label>
+                                <input type="text" class="form-control" id="parentName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="relationship" class="form-label">Relationship to Child *</label>
+                                <select class="form-control" id="relationship" required>
+                                    <option value="">Select Relationship</option>
+                                    <option value="Mother">Mother</option>
+                                    <option value="Father">Father</option>
+                                    <option value="Guardian">Guardian</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address *</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number *</label>
+                                <input type="tel" class="form-control" id="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Home Address *</label>
+                            <textarea class="form-control" id="address" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <label for="previousSchool" class="form-label">Previous School (if any)</label>
+                            <input type="text" class="form-control" id="previousSchool">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-custom btn-lg text-white w-100">
+                            <i class="fas fa-paper-plane me-2"></i>Submit Application
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="requirements-card">
+                    <h5><i class="fas fa-clipboard-list me-2"></i>Admission Requirements</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-check text-success me-2"></i>Birth Certificate</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Passport Photos (4 copies)</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Previous School Records</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Medical Records</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Parent/Guardian ID</li>
+                    </ul>
+                </div>
+                
+                <div class="requirements-card">
+                    <h5><i class="fas fa-calendar me-2"></i>Important Dates</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><strong>Application Deadline:</strong> June 30, 2025</li>
+                        <li><strong>Interview Period:</strong> July 1-15, 2025</li>
+                        <li><strong>Results:</strong> July 20, 2025</li>
+                        <li><strong>School Resumes:</strong> September 2, 2025</li>
+                    </ul>
+                </div>
+                
+                <div class="requirements-card">
+                    <h5><i class="fas fa-money-bill-wave me-2"></i>Fees Structure</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><strong>Application Fee:</strong> GH₵ 100</li>
+                        <li><strong>Registration Fee:</strong> GH₵ 500</li>
+                        <li><strong>Tuition (Per Term):</strong></li>
+                        <li style="margin-left: 20px;">Pre-K: GH₵ 800</li>
+                        <li style="margin-left: 20px;">K-Grade 3: GH₵ 1,000</li>
+                    </ul>
+                    <a href="fees.html" class="btn btn-outline-primary btn-sm">Pay Fees</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="successModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Application Submitted</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Thank you for your application! We have received your admission form.</p>
+                    <p><strong>Application ID:</strong> <span id="applicationId"></span></p>
+                    <p>We will contact you within 3-5 business days regarding the next steps.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showLogin() {
+            alert('Please go to the home page to login.');
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Generate application ID
+            const applicationId = 'APP' + Date.now().toString().slice(-6);
+            
+            // Store application data
+            const formData = {
+                id: applicationId,
+                childName: document.getElementById('childName').value,
+                dateOfBirth: document.getElementById('dateOfBirth').value,
+                gender: document.getElementById('gender').value,
+                gradeLevel: document.getElementById('gradeLevel').value,
+                parentName: document.getElementById('parentName').value,
+                relationship: document.getElementById('relationship').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                address: document.getElementById('address').value,
+                previousSchool: document.getElementById('previousSchool').value,
+                submittedAt: new Date().toLocaleString(),
+                status: 'Pending Review'
+            };
+            
+            // Save to storage
+            let applications = JSON.parse(localStorage.getItem('applications') || '[]');
+            applications.push(formData);
+            localStorage.setItem('applications', JSON.stringify(applications));
+            
+            // Show success modal
+            document.getElementById('applicationId').textContent = applicationId;
+            new bootstrap.Modal(document.getElementById('successModal')).show();
+            
+            // Reset form
+            this.reset();
+        });
+
+        // Check if user is logged in
+        window.onload = function() {
+            const savedUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            if (savedUser) {
+                const navLinks = document.querySelector('.navbar-nav');
+                navLinks.innerHTML = `
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><span class="nav-link">Welcome, ${savedUser.name}</span></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+                `;
+            }
+        };
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+    </script>
+</body>
+</html>

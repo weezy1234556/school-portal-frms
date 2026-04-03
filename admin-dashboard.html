@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Firmly Rooted Montessori School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8f9fa;
+            --accent-color: #28a745;
+            --danger-color: #dc3545;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            color: white;
+            padding: 20px 0;
+            margin-bottom: 30px;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stats-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .data-table {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .table th {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+        }
+
+        .btn-admin {
+            background: var(--primary-color);
+            border: none;
+            color: white;
+        }
+
+        .btn-admin:hover {
+            background: #1e3a78;
+            color: white;
+        }
+
+        .tab-pane {
+            padding: 20px 0;
+        }
+
+        .nav-tabs .nav-link.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="admin-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h2><i class="fas fa-cog me-3"></i>Admin Dashboard</h2>
+                    <p class="mb-0">Firmly Rooted Montessori School Management</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <a href="index.html" class="btn btn-outline-light me-2">
+                        <i class="fas fa-home me-2"></i>Home
+                    </a>
+                    <button onclick="logout()" class="btn btn-outline-light">
+                        <i class="fas fa-sign-out-alt me-2"></i>Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <i class="fas fa-user-plus stats-icon text-primary"></i>
+                    <h3 id="totalApplications">0</h3>
+                    <p class="text-muted">Total Applications</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <i class="fas fa-credit-card stats-icon text-success"></i>
+                    <h3 id="totalPayments">0</h3>
+                    <p class="text-muted">Total Payments</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <i class="fas fa-money-bill-wave stats-icon text-warning"></i>
+                    <h3>GH₵ <span id="totalRevenue">0</span></h3>
+                    <p class="text-muted">Total Revenue</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stats-card">
+                    <i class="fas fa-users stats-icon text-info"></i>
+                    <h3 id="totalStudents">0</h3>
+                    <p class="text-muted">Registered Students</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <ul class="nav nav-tabs" id="adminTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="applications-tab" data-bs-toggle="tab" data-bs-target="#applications" type="button">
+                    <i class="fas fa-file-alt me-2"></i>Applications
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="payments-tab" data-bs-toggle="tab" data-bs-target="#payments" type="button">
+                    <i class="fas fa-credit-card me-2"></i>Payments
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="students-tab" data-bs-toggle="tab" data-bs-target="#students" type="button">
+                    <i class="fas fa-users me-2"></i>Students
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="adminTabContent">
+            <!-- Applications Tab -->
+            <div class="tab-pane fade show active" id="applications" role="tabpanel">
+                <div class="data-table">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Application ID</th>
+                                    <th>Child Name</th>
+                                    <th>Parent Name</th>
+                                    <th>Grade Level</th>
+                                    <th>Date Submitted</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="applicationsTable">
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">No applications found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Payments Tab -->
+            <div class="tab-pane fade" id="payments" role="tabpanel">
+                <div class="data-table">
+                    <div class="table-responsive">
+                        <table class="table table-striped mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Receipt No.</th>
+                                    <th>Student ID</th>
+                                    <th>Student Name</th>
+                                    <th>Fee Type</th>
+                                    <th>Amount (GH₵)</th>
+                                    <th>Payment Method</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="paymentsTable">
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted">No payments found</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Students Tab -->
+            <div class="tab-pane fade" id="students" role="tabpanel">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="data-table">
+                            <div class="table-responsive">
+                                <table class="table table-striped mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th>Student ID</th>
+                                            <th>Student Name</th>
+                                            <th>Class</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="studentsTable">
+                                        <!-- Students will be dynamically inserted -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="stats-card">
+                            <h5>Add New Student</h5>
+                            <form id="addStudentForm">
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="newStudentId" placeholder="Student ID" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="text" class="form-control" id="newStudentName" placeholder="Student Name" required>
+                                </div>
+                                <div class="mb-3">
+                                    <select class="form-control" id="newStudentClass" required>
+                                        <option value="">Select Class</option>
+                                        <option value="Pre-K">Pre-K</option>
+                                        <option value="Kindergarten">Kindergarten</option>
+                                        <option value="Grade 1">Grade 1</option>
+                                        <option value="Grade 2">Grade 2</option>
+                                        <option value="Grade 3">Grade 3</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <input type="password" class="form-control" id="newStudentPassword" placeholder="Password" required>
+                                </div>
+                                <button type="submit" class="btn btn-admin w-100">Add Student</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function () {
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            if (!currentUser || !currentUser.isAdmin) {
+                alert('Access denied. Admin login required.');
+                window.location.href = 'index.html';
+                return;
+            }
+
+            loadDashboardData();
+            loadStudentsTable();
+        };
+
+        function loadDashboardData() {
+            const applications = JSON.parse(localStorage.getItem('applications') || '[]');
+            const payments = JSON.parse(localStorage.getItem('payments') || '[]');
+
+            document.getElementById('totalApplications').textContent = applications.length;
+            document.getElementById('totalPayments').textContent = payments.length;
+            document.getElementById('totalRevenue').textContent = payments.reduce((sum, p) => sum + parseFloat(p.amount || 0), 0).toLocaleString();
+
+            loadApplicationsTable(applications);
+            loadPaymentsTable(payments);
+        }
+
+        function loadApplicationsTable(applications) {
+            const tbody = document.getElementById('applicationsTable');
+            if (applications.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="text-center text-muted">No applications found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = applications.map(app => `
+                <tr>
+                    <td>${app.id}</td>
+                    <td>${app.childName}</td>
+                    <td>${app.parentName}</td>
+                    <td>${app.gradeLevel}</td>
+                    <td>${app.submittedAt}</td>
+                    <td><span class="badge bg-warning">${app.status}</span></td>
+                    <td>
+                        <button class="btn btn-sm btn-success" onclick="approveApplication('${app.id}')"><i class="fas fa-check"></i></button>
+                        <button class="btn btn-sm btn-danger" onclick="rejectApplication('${app.id}')"><i class="fas fa-times"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function loadPaymentsTable(payments) {
+            const tbody = document.getElementById('paymentsTable');
+            if (payments.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="8" class="text-center text-muted">No payments found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = payments.map(payment => `
+                <tr>
+                    <td>${payment.receiptNo}</td>
+                    <td>${payment.studentId}</td>
+                    <td>${payment.studentName}</td>
+                    <td>${payment.feeType}</td>
+                    <td>${payment.amount}</td>
+                    <td>${payment.method}</td>
+                    <td>${payment.date}</td>
+                    <td><span class="badge bg-success">${payment.status}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function loadStudentsTable() {
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            document.getElementById('totalStudents').textContent = students.length;
+
+            const tbody = document.getElementById('studentsTable');
+            if (students.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No students found</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = students.map(student => `
+                <tr>
+                    <td>${student.id}</td>
+                    <td>${student.name}</td>
+                    <td>${student.class}</td>
+                    <td><span class="badge bg-success">${student.status}</span></td>
+                    <td><button class="btn btn-sm btn-outline-primary" onclick="editStudent('${student.id}')"><i class="fas fa-edit"></i></button></td>
+                </tr>
+            `).join('');
+        }
+
+        document.getElementById('addStudentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const id = document.getElementById('newStudentId').value.trim();
+            const name = document.getElementById('newStudentName').value.trim();
+            const studentClass = document.getElementById('newStudentClass').value;
+            const password = document.getElementById('newStudentPassword').value;
+
+            if (!id || !name || !studentClass || !password) {
+                alert('Please fill in all fields.');
+                return;
+            }
+
+            const students = JSON.parse(localStorage.getItem('students') || '[]');
+            students.push({ id, name, class: studentClass, password, status: 'Active' });
+            localStorage.setItem('students', JSON.stringify(students));
+
+            alert('Student added successfully!');
+            location.reload();
+        });
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        function approveApplication(appId) {
+            const apps = JSON.parse(localStorage.getItem('applications') || '[]');
+            const index = apps.findIndex(app => app.id === appId);
+            if (index !== -1) {
+                apps[index].status = 'Approved';
+                localStorage.setItem('applications', JSON.stringify(apps));
+                loadApplicationsTable(apps);
+            }
+        }
+
+        function rejectApplication(appId) {
+            const apps = JSON.parse(localStorage.getItem('applications') || '[]');
+            const index = apps.findIndex(app => app.id === appId);
+            if (index !== -1) {
+                apps[index].status = 'Rejected';
+                localStorage.setItem('applications', JSON.stringify(apps));
+                loadApplicationsTable(apps);
+            }
+        }
+
+        function editStudent(studentId) {
+            alert('Edit functionality for ' + studentId + ' not implemented yet.');
+        }
+    </script>
+</body>
+</html>

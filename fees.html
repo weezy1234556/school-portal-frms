@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Fees - Firmly Rooted Montessori School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8f9fa;
+            --accent-color: #28a745;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 76px;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .page-header {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .payment-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 40px;
+            margin-top: -50px;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .payment-method {
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover, .payment-method.active {
+            border-color: var(--primary-color);
+            background: #f8f9fa;
+        }
+        
+        .payment-method i {
+            font-size: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .btn-custom {
+            background: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        .fee-structure {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .amount-display {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-graduation-cap me-2"></i>Firmly Rooted Montessori</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showLogin()">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold"><i class="fas fa-credit-card me-3"></i>Pay School Fees</h1>
+                    <p class="lead">Secure and convenient fee payment options</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="payment-card">
+                    <h3 class="mb-4">Fee Payment Form</h3>
+                    
+                    <form id="paymentForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="studentId" class="form-label">Student ID *</label>
+                                <input type="text" class="form-control" id="studentId" placeholder="Enter Student ID" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="studentName" class="form-label">Student Name *</label>
+                                <input type="text" class="form-control" id="studentName" placeholder="Enter Student Name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="feeType" class="form-label">Fee Type *</label>
+                                <select class="form-control" id="feeType" required onchange="updateAmount()">
+                                    <option value="">Select Fee Type</option>
+                                    <option value="application" data-amount="100">Application Fee - GH₵ 100</option>
+                                    <option value="registration" data-amount="500">Registration Fee - GH₵ 500</option>
+                                    <option value="tuition-prek" data-amount="800">Tuition Pre-K - GH₵ 800</option>
+                                    <option value="tuition-primary" data-amount="1000">Tuition K-Grade 3 - GH₵ 1,000</option>
+                                    <option value="uniform" data-amount="150">Uniform - GH₵ 150</option>
+                                    <option value="books" data-amount="200">Books & Materials - GH₵ 200</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="term" class="form-label">Academic Term</label>
+                                <select class="form-control" id="term">
+                                    <option value="First Term">First Term 2025</option>
+                                    <option value="Second Term">Second Term 2025</option>
+                                    <option value="Third Term">Third Term 2025</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="amount-display" id="amountDisplay" style="display: none;">
+                            <h4>Amount to Pay: GH₵ <span id="paymentAmount">0</span></h4>
+                        </div>
+                        
+                        <h5 class="mt-4 mb-3">Select Payment Method</h5>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="payment-method" onclick="selectPayment('mobile')">
+                                    <div class="row align-items-center">
+                                        <div class="col-3 text-center">
+                                            <i class="fas fa-mobile-alt"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <h6 class="mb-1">Mobile Money</h6>
+                                            <small class="text-muted">Pay via MTN/Vodafone/AirtelTigo</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="payment-method" onclick="selectPayment('bank')">
+                                    <div class="row align-items-center">
+                                        <div class="col-3 text-center">
+                                            <i class="fas fa-university"></i>
+                                        </div>
+                                        <div class="col-9">
+                                            <h6 class="mb-1">Bank Transfer</h6>
+                                            <small class="text-muted">Direct bank transfer</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="paymentDetails" style="display: none;">
+                            <div id="mobileDetails" class="payment-details" style="display: none;">
+                                <h6 class="mt-4 mb-3">Mobile Money Payment</h6>
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-phone me-2"></i>Payment Number: 0595518728</h6>
+                                    <p class="mb-0">Send payment to the above number and enter your reference below.</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="mobileReference" class="form-label">Mobile Money Reference *</label>
+                                    <input type="text" class="form-control" id="mobileReference" placeholder="Enter transaction reference">
+                                </div>
+                            </div>
+                            
+                            <div id="bankDetails" class="payment-details" style="display: none;">
+                                <h6 class="mt-4 mb-3">Bank Transfer Details</h6>
+                                <div class="alert alert-info">
+                                    <h6><i class="fas fa-university me-2"></i>Bank Details:</h6>
+                                    <p><strong>Bank:</strong> Fidelity Bank</p>
+                                    <p><strong>Account Number:</strong> 211122335637838</p>
+                                    <p class="mb-0"><strong>Account Name:</strong> Firmly Rooted Montessori School</p>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="bankReference" class="form-label">Bank Reference/Transaction ID *</label>
+                                    <input type="text" class="form-control" id="bankReference" placeholder="Enter bank transaction ID">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-custom btn-lg text-white w-100 mt-3" disabled id="submitBtn">
+                            <i class="fas fa-credit-card me-2"></i>Process Payment
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="col-lg-4">
+                <div class="fee-structure">
+                    <h5><i class="fas fa-list me-2"></i>Fee Structure 2025</h5>
+                    <table class="table table-sm mt-3">
+                        <tbody>
+                            <tr>
+                                <td>Application Fee</td>
+                                <td class="text-end"><strong>GH₵ 100</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Registration Fee</td>
+                                <td class="text-end"><strong>GH₵ 500</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Pre-K Tuition (Per Term)</td>
+                                <td class="text-end"><strong>GH₵ 800</strong></td>
+                            </tr>
+                            <tr>
+                                <td>K-Grade 3 Tuition (Per Term)</td>
+                                <td class="text-end"><strong>GH₵ 1,000</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Uniform</td>
+                                <td class="text-end"><strong>GH₵ 150</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Books & Materials</td>
+                                <td class="text-end"><strong>GH₵ 200</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="fee-structure">
+                    <h5><i class="fas fa-info-circle me-2"></i>Payment Information</h5>
+                    <ul class="list-unstyled mt-3">
+                        <li><i class="fas fa-check text-success me-2"></i>All payments are secure</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Receipt will be generated</li>
+                        <li><i class="fas fa-check text-success me-2"></i>24/7 payment support</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Multiple payment options</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="modal fade" id="paymentSuccessModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-success text-white">
+                    <h5 class="modal-title"><i class="fas fa-check-circle me-2"></i>Payment Successful</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Your payment has been processed successfully!</p>
+                    <p><strong>Receipt Number:</strong> <span id="receiptNumber"></span></p>
+                    <p><strong>Amount Paid:</strong> GH₵ <span id="paidAmount"></span></p>
+                    <p>A receipt has been generated for your records.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let selectedPaymentMethod = null;
+
+        function showLogin() {
+            alert('Please go to the home page to login.');
+            window.location.href = 'index.html';
+        }
+
+        function updateAmount() {
+            const feeType = document.getElementById('feeType');
+            const selectedOption = feeType.options[feeType.selectedIndex];
+            const amount = selectedOption.getAttribute('data-amount');
+            
+            if (amount) {
+                document.getElementById('paymentAmount').textContent = amount;
+                document.getElementById('amountDisplay').style.display = 'block';
+            } else {
+                document.getElementById('amountDisplay').style.display = 'none';
+            }
+            
+            updateSubmitButton();
+        }
+
+        function selectPayment(method) {
+            selectedPaymentMethod = method;
+            
+            // Remove active class from all payment methods
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Add active class to selected method
+            event.currentTarget.classList.add('active');
+            
+            // Show payment details
+            document.getElementById('paymentDetails').style.display = 'block';
+            document.querySelectorAll('.payment-details').forEach(el => {
+                el.style.display = 'none';
+            });
+            
+            if (method === 'mobile') {
+                document.getElementById('mobileDetails').style.display = 'block';
+            } else if (method === 'bank') {
+                document.getElementById('bankDetails').style.display = 'block';
+            }
+            
+            updateSubmitButton();
+        }
+
+        function updateSubmitButton() {
+            const feeType = document.getElementById('feeType').value;
+            const submitBtn = document.getElementById('submitBtn');
+            
+            if (feeType && selectedPaymentMethod) {
+                submitBtn.disabled = false;
+            } else {
+                submitBtn.disabled = true;
+            }
+        }
+
+        document.getElementById('paymentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const studentId = document.getElementById('studentId').value;
+            const studentName = document.getElementById('studentName').value;
+            const feeType = document.getElementById('feeType');
+            const selectedOption = feeType.options[feeType.selectedIndex];
+            const amount = selectedOption.getAttribute('data-amount');
+            const term = document.getElementById('term').value;
+            
+            let reference = '';
+            if (selectedPaymentMethod === 'mobile') {
+                reference = document.getElementById('mobileReference').value;
+                if (!reference) {
+                    alert('Please enter mobile money reference.');
+                    return;
+                }
+            } else if (selectedPaymentMethod === 'bank') {
+                reference = document.getElementById('bankReference').value;
+                if (!reference) {
+                    alert('Please enter bank reference.');
+                    return;
+                }
+            }
+            
+            // Generate receipt number
+            const receiptNumber = 'REC' + Date.now().toString().slice(-8);
+            
+            // Store payment record
+            const paymentData = {
+                receiptNumber: receiptNumber,
+                studentId: studentId,
+                studentName: studentName,
+                feeType: selectedOption.text,
+                amount: amount,
+                term: term,
+                paymentMethod: selectedPaymentMethod,
+                reference: reference,
+                paidAt: new Date().toLocaleString(),
+                status: 'Completed'
+            };
+            
+            let payments = JSON.parse(localStorage.getItem('payments') || '[]');
+            payments.push(paymentData);
+            localStorage.setItem('payments', JSON.stringify(payments));
+            
+            // Show success modal
+            document.getElementById('receiptNumber').textContent = receiptNumber;
+            document.getElementById('paidAmount').textContent = amount;
+            new bootstrap.Modal(document.getElementById('paymentSuccessModal')).show();
+            
+            // Reset form
+            this.reset();
+            selectedPaymentMethod = null;
+            document.getElementById('amountDisplay').style.display = 'none';
+            document.getElementById('paymentDetails').style.display = 'none';
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('active');
+            });
+            updateSubmitButton();
+        });
+
+        // Check if user is logged in
+        window.onload = function() {
+            const savedUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            if (savedUser) {
+                const navLinks = document.querySelector('.navbar-nav');
+                navLinks.innerHTML = `
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><span class="nav-link">Welcome, ${savedUser.name}</span></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+                `;
+            }
+        };
+
+        function logout() {
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+    </script>
+</body>
+</html>

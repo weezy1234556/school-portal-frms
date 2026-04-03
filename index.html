@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firmly Rooted Montessori School</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #f8f9fa;
+            --accent-color: #28a745;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), #1e3a78);
+            color: white;
+            padding: 100px 0;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-card {
+            border: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .btn-custom {
+            background: var(--accent-color);
+            border: none;
+            padding: 12px 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-custom:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            background: var(--primary-color);
+            color: white;
+            padding: 30px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#"><i class="fas fa-graduation-cap me-2"></i>Firmly Rooted Montessori</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="showLogin()">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Welcome to Firmly Rooted Montessori School</h1>
+                    <p class="lead mb-4">Nurturing young minds with the proven Montessori method. Building strong foundations for lifelong learning.</p>
+                    <div class="d-flex gap-3">
+                        <a href="admission.html" class="btn btn-custom btn-lg text-white">Apply Now</a>
+                        <a href="fees.html" class="btn btn-outline-light btn-lg">Pay Fees</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f0f8ff'/%3E%3Ctext x='50%25' y='50%25' font-size='24' text-anchor='middle' dy='.3em' fill='%232c5aa0'%3ESchool Image%3C/text%3E%3C/svg%3E" class="img-fluid rounded shadow" alt="School">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Why Choose Us?</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card feature-card text-center p-4">
+                        <i class="fas fa-child feature-icon"></i>
+                        <h5>Child-Centered Learning</h5> 
+                        <p>Our Montessori approach focuses on each child's individual needs and learning pace.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card text-center p-4">
+                        <i class="fas fa-users feature-icon"></i>
+                        <h5>Experienced Teachers</h5>
+                        <p>Certified Montessori educators dedicated to nurturing your child's potential.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card feature-card text-center p-4">
+                        <i class="fas fa-seedling feature-icon"></i>
+                        <h5>Holistic Development</h5>
+                        <p>We focus on academic, social, and emotional growth in a caring environment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5><i class="fas fa-graduation-cap me-2"></i>Firmly Rooted Montessori School</h5>
+                    <p>Building strong foundations for tomorrow's leaders.</p>
+                </div>
+                <div class="col-md-6">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="admission.html" class="text-light text-decoration-none">Admission</a></li>
+                        <li><a href="fees.html" class="text-light text-decoration-none">Fee Payment</a></li>
+                        <li><a href="#" onclick="showLogin()" class="text-light text-decoration-none">Student Login</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-3">
+            <p class="text-center mb-0">&copy; 2025 Firmly Rooted Montessori School. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Student Login</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm">
+                        <div class="mb-3">
+                            <label for="studentId" class="form-label">Student ID</label>
+                            <input type="text" class="form-control" id="studentId" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-custom text-white w-100">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let currentUser = null;
+        const students = {
+            'STU001': { password: 'pass123', name: 'John Doe', class: 'Grade 1' },
+            'STU002': { password: 'pass456', name: 'Jane Smith', class: 'Grade 2' }
+        };
+
+        function showLogin() {
+            new bootstrap.Modal(document.getElementById('loginModal')).show();
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const studentId = document.getElementById('studentId').value;
+            const password = document.getElementById('password').value;
+            
+            // Admin login check
+            if (studentId === 'admin' && password === 'admin123') {
+                currentUser = { id: 'admin', name: 'Administrator', isAdmin: true };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                window.location.href = 'admin.html';
+                return;
+            }
+            
+            if (students[studentId] && students[studentId].password === password) {
+                currentUser = { id: studentId, ...students[studentId] };
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
+                updateNavbar();
+                alert('Login successful! Welcome, ' + currentUser.name);
+            } else {
+                alert('Invalid credentials. Please try again.');
+            }
+        });
+
+        function updateNavbar() {
+            if (currentUser) {
+                const navLinks = document.querySelector('.navbar-nav');
+                navLinks.innerHTML = `
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="admission.html">Admission</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><span class="nav-link">Welcome, ${currentUser.name}</span></li>
+                    <li class="nav-item"><a class="nav-link" href="#" onclick="logout()">Logout</a></li>
+                `;
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            location.reload();
+        }
+
+        // Check if user is logged in on page load
+        window.onload = function() {
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+                updateNavbar();
+            }
+        };
+    </script>
+</body>
+</html>
